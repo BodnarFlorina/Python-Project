@@ -1,17 +1,18 @@
-from urllib.request import urlopen
+from urllib.request import urlopen, Request
+from urllib.error import URLError, HTTPError
 from html.parser import HTMLParser
 from urllib.parse import urljoin
-from collections import deque
+
 
 class Parser(HTMLParser):
-    def __init__(self, url, tag, visited_links):
+    def __init__(self, url, tag, visited_links, limit_links=500):
         super().__init__()
         self.url = url
         self.tag = tag
         self.links = []
         self.visited_links = visited_links
-        self.limit_links = 500
-        self.queue = deque([url])
+        self.limit_links = limit_links
+        self.queue = [url]
         self.get_links()
 
     def handle_starttag(self, tag, attrs):
@@ -29,12 +30,17 @@ class Parser(HTMLParser):
 
     def get_links(self):
         while self.queue and len(self.visited_links) < self.limit_links:
-            url = self.queue.popleft()
+            url = self.queue.pop(0)
             try:
-                response = urlopen(url)
+                request = Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+                response = urlopen(request)
                 html = response.read()
                 # print(f"{html}")
                 self.feed(html.decode('utf-8'))
+            except HTTPError as e:
+                print(f"HTTPError fetching HTML for {url}: {e}")
+            except URLError as e:
+                print(f"URLError fetching HTML for {url}: {e}")
             except Exception as e:
                 print(f"Error fetching HTML for {url}: {e}")
 
@@ -42,6 +48,18 @@ class Parser(HTMLParser):
         print(f"Traseul parcurs de tool este:")
         for i, link in enumerate(self.visited_links):
             print(f"{i+1}. {link}")
+
+
+def get_limit_links():
+    while True:
+        try:
+            limit = int(input("Introduceti limita de link-uri (implicit 500): "))
+            if limit > 0:
+                return limit
+            else:
+                print("Limita trebuie sa fie un numar intreg pozitiv...")
+        except ValueError:
+            print("Introduceti un numar intreg valid.")
 
 
 if __name__ == "__main__":
@@ -56,11 +74,13 @@ if __name__ == "__main__":
 
     tag = input("Introduceti tag-ul: ")
 
-    # url = "https://docs.python.org/3/library/html.parser.html"
-    # tag = "html.parser"
+    limit_links = get_limit_links()
 
     visited_links = [url]
 
-    parser = Parser(url, tag, visited_links)
+    parser = Parser(url, tag, visited_links, limit_links)
 
     parser.print_links()
+
+    # url = "https://docs.python.org/3/library/html.parser.html"
+    # tag = "html.parser"
