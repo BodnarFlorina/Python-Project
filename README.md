@@ -5,6 +5,7 @@ Daca intr-o pagina sunt mai multe pagini ce contin acel tag vor fi accesate toat
 INPUT:
 Link de pornire
 Tag
+
 OUTPUT:
 Traseul parcurs de tool: Nume link si dimensiune pagina accesata
 Logul de rulare si erorile aparute
