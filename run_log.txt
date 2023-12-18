@@ -1,0 +1,46 @@
+User input: dfghjk
+User input: https://docs.python.org/3/library/html.parser.htmlfghj
+Error fetching HTML: Invalid URL 'dfghjk': No scheme supplied. Perhaps you meant https://dfghjk?
+User input: https://docs.python.org/3/library/html.parser.html
+Error fetching HTML: 404 Client Error: Not Found for url: https://docs.python.org/3/library/html.parser.htmlfghj
+User input: html.parser
+User input: 50
+Traseul parcurs de tool este:
+1. https://docs.python.org/3/library/html.parser.html - Dimensiune: 194854 bytes
+2. https://docs.python.org/3/library/html.parser.html#example-html-parser-application - Dimensiune: 194854 bytes
+3. https://docs.python.org/3/library/html.parser.html#htmlparser-methods - Dimensiune: 194854 bytes
+4. https://docs.python.org/3/library/html.parser.html#examples - Dimensiune: 194854 bytes
+5. https://github.com/python/cpython/blob/main/Doc/library/html.parser.rst - Dimensiune: 49978 bytes
+6. https://docs.python.org/3/library/html.parser.html#module-html.parser - Dimensiune: 194854 bytes
+7. https://docs.python.org/3/library/html.parser.html#html.parser.HTMLParser - Dimensiune: 194854 bytes
+8. https://docs.python.org/3/library/html.parser.html#html.parser.HTMLParser.feed - Dimensiune: 194854 bytes
+9. https://docs.python.org/3/library/html.parser.html#html.parser.HTMLParser.close - Dimensiune: 194854 bytes
+10. https://docs.python.org/3/library/html.parser.html#html.parser.HTMLParser.reset - Dimensiune: 194854 bytes
+11. https://docs.python.org/3/library/html.parser.html#html.parser.HTMLParser.getpos - Dimensiune: 194854 bytes
+12. https://docs.python.org/3/library/html.parser.html#html.parser.HTMLParser.get_starttag_text - Dimensiune: 194854 bytes
+13. https://docs.python.org/3/library/html.parser.html#html.parser.HTMLParser.handle_startendtag - Dimensiune: 194854 bytes
+14. https://docs.python.org/3/library/html.parser.html#html.parser.HTMLParser.handle_starttag - Dimensiune: 194854 bytes
+15. https://docs.python.org/3/library/html.parser.html#html.parser.HTMLParser.handle_endtag - Dimensiune: 194854 bytes
+16. https://docs.python.org/3/library/html.parser.html#html.parser.HTMLParser.handle_data - Dimensiune: 194854 bytes
+17. https://docs.python.org/3/library/html.parser.html#html.parser.HTMLParser.handle_entityref - Dimensiune: 194854 bytes
+18. https://docs.python.org/3/library/html.parser.html#html.parser.HTMLParser.handle_charref - Dimensiune: 194854 bytes
+19. https://docs.python.org/3/library/html.parser.html#html.parser.HTMLParser.handle_comment - Dimensiune: 194854 bytes
+20. https://docs.python.org/3/library/html.parser.html#html.parser.HTMLParser.handle_decl - Dimensiune: 194854 bytes
+21. https://docs.python.org/3/library/html.parser.html#html.parser.HTMLParser.handle_pi - Dimensiune: 194854 bytes
+22. https://docs.python.org/3/library/html.parser.html#html.parser.HTMLParser.unknown_decl - Dimensiune: 194854 bytes
+User input: https://jamilacuisine.ro/fursecuri-linzer-cu-gem-si-migdale-pentru-craciun-reteta-video/
+User input: caise
+User input: 10
+Error fetching HTML for https://jamilacuisine.ro/fursecuri-linzer-cu-gem-si-migdale-pentru-craciun-reteta-video/: No connection adapters were found for 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2OTYiIGhlaWdodD0iMzkyIiB2aWV3Qm94PSIwIDAgNjk2IDM5MiI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iI2VjZWVmMCIvPjwvc3ZnPg=='
+Error fetching HTML for https://jamilacuisine.ro/gem-de-caise-simplu-de-facut-reteta-video/: No connection adapters were found for 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2OTYiIGhlaWdodD0iMzkyIiB2aWV3Qm94PSIwIDAgNjk2IDM5MiI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iI2VjZWVmMCIvPjwvc3ZnPg=='
+Traseul parcurs de tool este:
+1. https://jamilacuisine.ro/fursecuri-linzer-cu-gem-si-migdale-pentru-craciun-reteta-video/ - Dimensiune: 366977 bytes
+2. https://jamilacuisine.ro/gem-de-caise-simplu-de-facut-reteta-video/ - Dimensiune: 332825 bytes
+3. https://api.whatsapp.com/send?text=Gem%20de%20caise%20simplu%20de%20facut%20-%20reteta%20video https%3A%2F%2Fjamilacuisine.ro%2Fgem-de-caise-simplu-de-facut-reteta-video%2F - Dimensiune: 676275 bytes
+4. https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjamilacuisine.ro%2Fgem-de-caise-simplu-de-facut-reteta-video%2F - Dimensiune: 15082 bytes
+5. https://jamilacuisine.ro/gem-de-caise-simplu-de-facut-reteta-video/#wprm-recipe-video-container-10461 - Dimensiune: 324003 bytes
+6. https://www.facebook.com/share.php?u=https%3A%2F%2Fjamilacuisine.ro%2Fgem-de-caise-simplu-de-facut-reteta-video%2F - Dimensiune: 14148 bytes
+7. https://jamilacuisine.ro/tag/caise/ - Dimensiune: 237401 bytes
+8. https://api.whatsapp.com/send?text=Gem%20de%20caise%20simplu%20de%20facut%20-%20reteta%20video https%3A%2F%2Fjamilacuisine.ro%2Fgem-de-caise-simplu-de-facut-reteta-video%2F#content-wrapper - Dimensiune: 176570 bytes
+9. https://web.whatsapp.com/send/?text=Gem+de+caise+simplu+de+facut+-+reteta+video+https%3A%2F%2Fjamilacuisine.ro%2Fgem-de-caise-simplu-de-facut-reteta-video%2F - Dimensiune: 3640 bytes
+10. https://www.facebook.com/recover/initiate/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzAyODY3NTcxLCJjYWxsc2l0ZV9pZCI6Mjg0Nzg1MTQ5MzQ1MzY5fQ%3D%3D&c=https%3A%2F%2Fm.facebook.com%2Flogin.php%3Fskip_api_login%3D1%26api_key%3D966242223397117%26signed_next%3D1%26next%3Dhttps%253A%252F%252Fm.facebook.com%252Fsharer%252Fsharer.php%253Fu%253Dhttps%25253A%25252F%25252Fjamilacuisine.ro%25252Fgem-de-caise-simplu-de-facut-reteta-video%25252F%26cancel_url%3Dhttps%253A%252F%252Fm.facebook.com%252Fdialog%252Fclose_window%252F%253Fapp_id%253D966242223397117%2526connect%253D0%2523_%253D_%26display%3Dtouch%26locale%3Dro_RO&r&cuid&ars=facebook_login&lwv=100&locale2=ro_RO&refid=9 - Dimensiune: 91206 bytes

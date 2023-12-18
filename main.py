@@ -41,29 +41,40 @@ class Parser:
                     self.page_sizes[url] += resource_size
 
             except requests.RequestException as e:
-                print(f"Error fetching HTML for {url}: {e}")
+                with open('run_log.txt', 'a') as log_file:
+                    print(f"Error fetching HTML for {url}: {e}", file=log_file)
             except Exception as e:
-                print(f"An unexpected error occurred for {url}: {e}")
+                with open('run_log.txt', 'a') as log_file:
+                    print(f"An unexpected error occurred for {url}: {e}", file=log_file)
 
     def get_page_size(self, url):
         try:
             response = requests.get(url)
             return len(response.content)
         except requests.RequestException as e:
-            print(f"Error fetching HTML for {url}: {e}")
-            return 0
+            with open('run_log.txt', 'a') as log_file:
+                print(f"Error fetching HTML for {url}: {e}", file=log_file)
+                return 0
 
     def print_links(self):
-        print(f"Traseul parcurs de tool este:")
-        for i, link in enumerate(self.visited_links):
-            size = self.page_sizes.get(link)
-            print(f"{i+1}. {link} - Dimensiune: {size} bytes")
+        with open('run_log.txt', 'a') as log_file:
+            print(f"Traseul parcurs de tool este:", file=log_file)
+            for i, link in enumerate(self.visited_links):
+                size = self.page_sizes.get(link)
+                print(f"{i+1}. {link} - Dimensiune: {size} bytes", file=log_file)
+
+
+def get_user_input(prompt):
+    user_input = input(prompt)
+    with open('run_log.txt', 'a') as log_file:
+        print(f"User input: {user_input}", file=log_file)
+    return user_input
 
 
 def get_limit_links():
     while True:
         try:
-            limit = int(input("Introduceti limita de link-uri (implicit 500): "))
+            limit = int(get_user_input("Introduceti limita de link-uri (implicit 500): "))
             if limit > 0:
                 return limit
             else:
@@ -73,16 +84,18 @@ def get_limit_links():
 
 
 if __name__ == "__main__":
-    url = input("Introduceti link-ul paginii web: ")
+    url = get_user_input("Introduceti link-ul paginii web: ")
     while True:
         try:
             requests.get(url).raise_for_status()
             break
         except requests.RequestException as e:
-            print(f"Error fetching HTML: {e}")
-            url = input("Introduceti un link valid: ")
+            with open('run_log.txt', 'a') as log_file:
+                print(f"Error fetching HTML: {e}", file=log_file)
+                print(f"Error fetching HTML: {e}")
+                url = get_user_input("Introduceti un link valid: ")
 
-    tag = input("Introduceti tag-ul: ")
+    tag = get_user_input("Introduceti tag-ul: ")
 
     limit_links = get_limit_links()
 
