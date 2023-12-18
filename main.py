@@ -1,53 +1,63 @@
-from urllib.request import urlopen, Request
-from urllib.error import URLError, HTTPError
-from html.parser import HTMLParser
+import requests
+from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 
-
-class Parser(HTMLParser):
+class Parser:
     def __init__(self, url, tag, visited_links, limit_links=500):
-        super().__init__()
         self.url = url
         self.tag = tag
-        self.links = []
         self.visited_links = visited_links
+        self.page_sizes = {}
         self.limit_links = limit_links
         self.queue = [url]
         self.get_links()
-
-    def handle_starttag(self, tag, attrs):
-        if tag == 'a' and len(self.visited_links) < self.limit_links:
-            for attr, value in attrs:
-                if attr == 'href':
-                    complete_url = urljoin(self.url, value)
-                    if self.tag in complete_url and complete_url not in self.visited_links:
-                        self.visited_links.append(complete_url)
-                        self.links.append(complete_url)
-                        self.queue.append(complete_url)
-
-                        if len(self.visited_links) >= self.limit_links:
-                            break
 
     def get_links(self):
         while self.queue and len(self.visited_links) < self.limit_links:
             url = self.queue.pop(0)
             try:
-                request = Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-                response = urlopen(request)
-                html = response.read()
-                # print(f"{html}")
-                self.feed(html.decode('utf-8'))
-            except HTTPError as e:
-                print(f"HTTPError fetching HTML for {url}: {e}")
-            except URLError as e:
-                print(f"URLError fetching HTML for {url}: {e}")
-            except Exception as e:
+                size = self.get_page_size(url)
+                self.page_sizes[url] = size
+
+                response = requests.get(url)
+                soup = BeautifulSoup(response.content, 'html.parser')
+
+                for tag_a in soup.find_all('a', href=True):
+                    complete_url = urljoin(url, tag_a['href'])
+                    if (self.tag in tag_a or self.tag in complete_url) and complete_url not in self.visited_links:
+                        self.visited_links.append(complete_url)
+                        self.queue.append(complete_url)
+
+                        size = self.get_page_size(complete_url)
+                        self.page_sizes[complete_url] = size
+
+                        if len(self.visited_links) >= self.limit_links:
+                            break
+
+                for associated_resource_tag in soup.find_all(['img', 'script', 'link', 'audio', 'video', 'object'], src=True):
+                    resource_url = urljoin(url, associated_resource_tag['src'])
+                    resource_response = requests.get(resource_url)
+                    resource_size = len(resource_response.content)
+                    self.page_sizes[url] += resource_size
+
+            except requests.RequestException as e:
                 print(f"Error fetching HTML for {url}: {e}")
+            except Exception as e:
+                print(f"An unexpected error occurred for {url}: {e}")
+
+    def get_page_size(self, url):
+        try:
+            response = requests.get(url)
+            return len(response.content)
+        except requests.RequestException as e:
+            print(f"Error fetching HTML for {url}: {e}")
+            return 0
 
     def print_links(self):
         print(f"Traseul parcurs de tool este:")
         for i, link in enumerate(self.visited_links):
-            print(f"{i+1}. {link}")
+            size = self.page_sizes.get(link)
+            print(f"{i+1}. {link} - Dimensiune: {size} bytes")
 
 
 def get_limit_links():
@@ -59,16 +69,16 @@ def get_limit_links():
             else:
                 print("Limita trebuie sa fie un numar intreg pozitiv...")
         except ValueError:
-            print("Introduceti un numar intreg valid.")
+            print("Introduceti un numar intreg valid...")
 
 
 if __name__ == "__main__":
     url = input("Introduceti link-ul paginii web: ")
     while True:
         try:
-            urlopen(url)
+            requests.get(url).raise_for_status()
             break
-        except Exception as e:
+        except requests.RequestException as e:
             print(f"Error fetching HTML: {e}")
             url = input("Introduceti un link valid: ")
 
@@ -81,6 +91,3 @@ if __name__ == "__main__":
     parser = Parser(url, tag, visited_links, limit_links)
 
     parser.print_links()
-
-    # url = "https://docs.python.org/3/library/html.parser.html"
-    # tag = "html.parser"
