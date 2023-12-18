@@ -1,11 +1,2 @@
 # Python-Project
-Scrieti un tool care, pornind de la pagina web si un tag primiti ca parametri, listeaza traseul parcus de tool atunci cand acceseaza toate paginile ce au acel tag. Tool-ul va considera un tag valid daca link-ul contine acel tag in interiorul campului <a ...> </a>
-Daca intr-o pagina sunt mai multe pagini ce contin acel tag vor fi accesate toate
-
-INPUT:
-Link de pornire
-Tag
-
-OUTPUT:
-Traseul parcurs de tool: Nume link si dimensiune pagina accesata
-Logul de rulare si erorile aparute
+![image](https://github.com/BodnarFlorina/Python-Project/assets/100145889/44c1fc5a-c24e-4c9a-976f-1b9457eb5e52)
